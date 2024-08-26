@@ -1,0 +1,30 @@
+package omar.demo.Model;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.util.Date;
+import java.util.List;
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Borrower {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    @Column(unique = true)
+    private String email;
+
+    @Temporal(TemporalType.DATE)
+    private Date membershipDate;
+
+    @OneToMany(mappedBy = "borrower", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BorrowRecord> borrowRecords;
+
+    
+}

@@ -1,0 +1,23 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2" author="omar">
+        <createTable tableName="book">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)"/>
+            <column name="isbn" type="varchar(13)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="published_date" type="date"/>
+            <column name="author_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_book_author" references="author(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

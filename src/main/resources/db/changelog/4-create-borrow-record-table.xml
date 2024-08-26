@@ -1,0 +1,23 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="4" author="omar">
+        <createTable tableName="borrow_record">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="borrower_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_borrow_record_borrower" references="borrower(id)"/>
+            </column>
+            <column name="book_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_borrow_record_book" references="book(id)"/>
+            </column>
+            <column name="borrow_date" type="date"/>
+            <column name="return_date" type="date"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
